@@ -1,0 +1,29 @@
+[
+  {
+    "content": "",
+    "createdOn": 1712323078411,
+    "css": "",
+    "cssMode": "css",
+    "externalLibs": {
+      "css": "",
+      "js": ""
+    },
+    "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Lingko 的畫廊</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f0f0f0;\n            margin: 0;\n            padding: 0;\n        }\n        header {\n            background-color: #333;\n            color: #fff;\n            padding: 10px;\n            text-align: center;\n        }\n        .gallery {\n            display: flex;\n            flex-wrap: wrap;\n            justify-content: center;\n            margin: 20px;\n        }\n        .gallery img {\n            width: 300px;\n            height: auto;\n            margin: 10px;\n            border: 3px solid #ccc;\n            border-radius: 5px;\n        }\n        footer {\n            text-align: center;\n            padding: 10px;\n            background-color: #333;\n            color: #fff;\n            position: fixed;\n            width: 100%;\n            bottom: 0;\n        }\n    </style>\n</head>\n<body>\n    <header>\n        <h1>Lingko 的畫廊</h1>\n        <p>歡迎欣賞我的作品！</p>\n    </header>\n    <div class=\"gallery\">\n        <!-- 在這裡放置你的畫作 -->\n        <img src=\"畫1.jpg\" alt=\"畫1\">\n        <img src=\"畫2.jpg\" alt=\"畫2\">\n        <img src=\"畫3.jpg\" alt=\"畫3\">\n    </div>\n    <footer>\n        <p>© 2025 Lingko</p>\n    </footer>\n</body>\n</html>\n",
+    "htmlMode": "html",
+    "id": "GZ046c3TxN",
+    "js": "",
+    "jsMode": "js",
+    "layoutMode": 1,
+    "mainSizes": [
+      50,
+      50
+    ],
+    "sizes": [
+      33,
+      33,
+      34
+    ],
+    "title": "Untitled 5-4-21:17",
+    "updatedOn": 1744171460727
+  }
+]
