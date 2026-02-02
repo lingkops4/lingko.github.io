@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<style id="webmakerstyle">
+
+</style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lingko — 個人作品集 2026</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans CJK TC", "Microsoft JhengHei", sans-serif;
+      margin: 0; padding: 0; line-height: 1.6;
+      background: #0a0a1a; color: #e0f7fa; min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* 粒子背景（輕量版，唔會卡） */
+    body {
+  background: linear-gradient(180deg, #0a0a1a 0%, #000814 40%, #001122 70%, #000304 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -2;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(0, 204, 255, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(0, 150, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(125, 211, 252, 0.05) 0%, transparent 60%);
+  opacity: 0.7;
+  animation: slowDrift 60s linear infinite;
+}
+@keyframes slowDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-3%, -3%) scale(1.05); }
+}
+
+    /* 頂部橫幅 */
+    .hero {
+      
+      color: #ffffff; padding: 6rem 1.5rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(0, 255, 255, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 3.4rem; font-weight: 800; margin: 0 0 0.8rem;
+      text-shadow: 0 0 30px #00ffffaa, 0 0 60px #0099ff88;
+      animation: glowText 5s ease-in-out infinite alternate;
+    }
+    @keyframes glowText {
+      0% { text-shadow: 0 0 20px #00ffff80, 0 0 40px #0099ff60; }
+      100% { text-shadow: 0 0 40px #00ffffcc, 0 0 80px #0099ffaa; }
+    }
+
+    /* 主要容器 */
+    .container {
+      max-width: 1200px; margin: -4rem auto 0;
+      background: rgba(0, 20, 40, 0.6); backdrop-filter: blur(16px);
+      padding: 4rem 2rem; border-radius: 28px 28px 28px 28px;
+      box-shadow: 0 15px 60px rgba(0, 150, 255, 0.4);
+      position: relative; z-index: 1;
+    }
+
+    /* 關於我 - 玻璃卡片 */
+    .about-card {
+      background: rgba(10, 30, 60, 0.55);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 204, 255, 0.35);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      max-width: 820px;
+      margin: 0 auto 4.5rem;
+      box-shadow: 0 12px 50px rgba(0, 150, 255, 0.3);
+      transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 80px rgba(0, 150, 255, 0.5);
+      border-color: rgba(0, 255, 255, 0.6);
+    }
+    .about-card h2 {
+      font-size: 2.8rem; margin: 0 0 1.2rem; text-align: center;
+      text-shadow: 0 0 25px #00ccffaa;
+    }
+    .intro-text {
+      font-size: 1.3rem; text-align: center; max-width: 680px; margin: 0 auto;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUpText 1.4s ease-out forwards 0.3s;
+    }
+    .intro-text:hover {
+      transform: translateY(-6px);
+      text-shadow: 0 0 20px #00ffffaa;
+    }
+    @keyframes fadeUpText {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 技能與作品 */
+    .skills-grid, .gallery {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem; margin-top: 2.5rem;
+    }
+    .skill-item, .card {
+      background: rgba(0, 20, 40, 0.75); border-radius: 16px;
+      padding: 1.8rem; border: 1px solid rgba(0, 204, 255, 0.25);
+      transition: all 0.35s ease;
+    }
+    .skill-item:hover, .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.5);
+      border-color: #00ffff;
+    }
+    .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; }
+
+    h2.section-title { text-align: center; margin: 5rem 0 2.5rem; font-size: 2.6rem; text-shadow: 0 0 20px #00ccff; }
+
+    /* 通用按鈕 */
+    .button {
+      display: inline-block; padding: 1rem 2.2rem; border-radius: 50px;
+      background: linear-gradient(90deg, #0099ff, #00ffff);
+      color: #000; text-decoration: none; font-weight: 700; margin: 0.6rem;
+      transition: all 0.3s;
+    }
+    .button:hover { transform: scale(1.08); box-shadow: 0 0 25px #00ffffaa; }
+
+    /* 立體對話框（保持原樣，但略調位置） */
+    :root {
+      --accent: #7dd3fc;
+      --shadow: rgba(2,6,23,0.7);
+    }
+    .stage {
+      margin: 6rem auto 4rem;
+      width: 90%; max-width: 420px;
+      perspective: 1400px; text-align: center;
+    }
+    .floating-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius: 20px; padding: 1.6rem;
+      box-shadow: 0 30px 70px -20px var(--shadow), 0 0 40px rgba(125,211,252,0.3);
+      transform-style: preserve-3d;
+      transition: all 0.45s cubic-bezier(0.23,1,0.32,1);
+      border: 1px solid rgba(125,211,252,0.35);
+      backdrop-filter: blur(10px) saturate(140%);
+    }
+    .floating-card.is-floating {
+      transform: translateY(-30px) translateZ(80px) rotateX(6deg);
+      box-shadow: 0 80px 120px -40px rgba(2,6,23,0.9), 0 0 60px rgba(125,211,252,0.45);
+    }
+    .chat-line { display: flex; gap: 14px; align-items: flex-start; }
+    .avatar {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #60a5fa);
+      flex: 0 0 48px; box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transform: translateZ(40px);
+    }
+    .bubble {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      padding: 14px 18px; border-radius: 16px; max-width: 75%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transform: translateZ(30px); font-size: 15px; line-height: 1.5;
+    }
+    .controls { margin-top: 2rem; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      background: transparent; color: #e6eef8; border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 16px; border-radius: 12px; cursor: pointer; font-size: 14px;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: rgba(125,211,252,0.15); }
+    .btn.primary {
+      background: linear-gradient(90deg, #0369a1, #7dd3fc);
+      color: #021022; border: none; box-shadow: 0 8px 20px rgba(7,89,133,0.3);
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) translateZ(0) rotateX(0deg) rotateY(0deg); }
+      50% { transform: translateY(-14px) translateZ(20px) rotateX(4deg) rotateY(3deg); }
+    }
+    .subtle { animation: floaty 5.2s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Lingko 的作品集</h1>
+    <p>創意有限，程式碼無情 · 2046 Edition<p>
+  </div>
+
+  <div class="container">
+    <!-- 關於我玻璃卡片 -->
+    <div class="about-card">
+      <h2>關於我</h2>
+      <p class="intro-text">
+        前端 × AI 藝術 × 極致數位體驗<br>
+        歡迎探索我的小宇宙～ ✨😌
+      </p>
+    </div>
+
+   <div class="skills">
+      <h2>技能專長</h2>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <h3>前端開發</h3>
+          <p>HTML, CSS, JavaScript</p>
+        </div>
+        <div class="skill-item">
+          <h3>後端開發</h3>
+          <p>Node.js, Python</p>
+        </div>
+        <div class="skill-item">
+          <h3>UI/UX 設計</h3>
+          <p>設計美觀的用戶介面</p>
+        </div>
+        <div class="skill-item">
+          <h3>創意 Coding</h3>
+          <p>解決問題的創新方案</p>
+        </div>
+        <div class="skill-item">
+          <h3>AI 圖像生成</h3>
+          <p>ComfyUI, Stable Diffusion, HuggingFace</p>
+        </div>
+        <div class="skill-item">
+          <h3>雲端部署</h3>
+          <p>Cloudflare Pages, GitHub Actions</p>
+        </div>
+        <div class="skill-item">
+          <h3>資料庫管理</h3>
+          <p>MySQL, MongoDB, Firebase</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h2 class="section-title">作品展示</h2>
+    <div class="gallery">
+      <div class="card">
+        <img alt="AI 藝術" src="https://github.com/user-attachments/assets/357edee8-8e74-4478-aa5a-d3ad8ec400c9" />
+        <h3>AI 創意項目</h3>
+        <p>提示詞工程 + ComfyUI 藝術生成</p>
+      </div>
+      <div class="card">
+        <img alt="響應式網頁" src="https://github.com/user-attachments/assets/357edee8-8e74-4478-aa5a-d3ad8ec400c9" />
+        <h3>響應式網頁</h3>
+        <p>跨裝置完美呈現的現代介面</p>
+      </div>
+      <div class="card">
+        <img alt="工具應用" src="https://github.com/user-attachments/assets/357edee8-8e74-4478-aa5a-d3ad8ec400c9" />
+        <h3>實用工具開發</h3>
+        <p>解決痛點的高效小工具</p>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 5rem 0;">
+      <a class="button" href="https://github.com" target="_blank">GitHub</a>
+      <a class="button" href="mailto:contact@lingko.dev">聯絡我</a>
+    </div>
+
+   <footer style="
+  position: relative;
+  width: 100%;
+  background: linear-gradient(90deg, #001122 0%, #002244 35%, #003366 50%, #002244 65%, #001122 100%);
+  border-radius: 32px;
+  margin-top: 5rem;
+  padding: 2.5rem 1rem;
+  box-shadow: 0 -12px 40px rgba(0,0,0,0.7),
+              inset 0 0 60px rgba(0,0,0,0.5),
+              inset 40px 0 100px rgba(0, 18, 34, 0.9),
+              inset -40px 0 100px rgba(0, 18, 34, 0.9);
+  overflow: hidden;
+  text-align: center;   /* 加呢行就可以置中文字 */
+">
+  <!-- 中間光暈 -->
+  <div style="
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, rgba(0, 204, 255, 0.13) 0%, transparent 65%);
+    pointer-events: none;
+  "></div>
+
+  <p style="
+    margin: 0;
+    font-size: 1.05rem;
+    color: #c8e0ff;
+    position: relative;
+    z-index: 1;
+  ">
+    © 1984🧸 Lingko®️ 🪅🪅草泥馬程式碼創作🪅🪅
+  </p>
+</footer>
+
+  </div>
+
+  <!-- 中間對話框 -->
+  <div class="stage">
+    <div id="card" class="floating-card subtle">
+      <div class="chat-line">
+        <div class="avatar"></div>
+        <div class="bubble">
+          嘿～1984🧸 整個頁面都係草泥馬啦！<br>
+          滑鼠移過嚟玩下～🪅 草泥馬會跟住你轉 🪅✨
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="toggleFloat" class="btn">切換強浮動</button>
+      <button id="toggleSubtle" class="btn primary">關閉微動</button>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('card');
+    const toggleFloat = document.getElementById('toggleFloat');
+    const toggleSubtle = document.getElementById('toggleSubtle');
+
+    toggleFloat.addEventListener('click', () => card.classList.toggle('is-floating'));
+    toggleSubtle.addEventListener('click', () => {
+      card.classList.toggle('subtle');
+      toggleSubtle.textContent = card.classList.contains('subtle') ? '開啟微動' : '關閉微動';
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / rect.width * 10;
+      const dy = (e.clientY - cy) / rect.height * 8;
+      card.style.transform = `translateY(-15px) translateZ(50px) rotateX(${dy}deg) rotateY(${dx}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = card.classList.contains('is-floating')
+        ? 'translateY(-30px) translateZ(80px) rotateX(6deg)'
+        : '';
+    });
+  </script>
+ <html lang="zh-HK">
+<head>
+  <meta charset="utf-8">
+  <title>Kenji Cyber Nero Player 🎮</title>
+  <link href="https://vjs.zencdn.net/8.23.4/video-js.css" rel="stylesheet">
+  <style>
+    body { background: #0a0f1c; color: #00ffff; text-align: center; font-family: 'Orbitron', sans-serif; }
+    .video-js { margin: 20px auto; border: 3px solid #1e90ff; border-radius: 8px; }
+    .video-js .vjs-control-bar { background-color: rgba(10,15,28,0.85); }
+    .video-js .vjs-play-control,
+    .video-js .vjs-volume-panel,
+    .video-js .vjs-progress-control { color: #00ffff; }
+    .video-js .vjs-slider { background-color: #1e90ff; }
+    .transparent-btn {
+      background: transparent; border: none; color: #00ffff;
+      font-size: 16px; margin: 3px; cursor: pointer; font-family: 'Orbitron';
+    }
+    .transparent-btn:hover { color: #1e90ff; }
+    .url-input { width: 400px; max-width: 80%; padding: 8px; border-radius: 6px;
+      border: 1px solid #1e90ff; background:#0a0f1c; color:#00ffff; font-size:14px; }
+    .playlist-ui { margin-top:20px; }
+    .playlist-item { cursor:pointer; padding:6px; margin:4px auto; width:300px;
+      border:1px solid #1e90ff; border-radius:6px; background:#0a0f1c; color:#00ffff; }
+    .playlist-item:hover { background:#1e90ff; color:#fff; }
+  </style>
+</head>
+<body>
+
+<h2>💻📺🎞️Lingko Player 🎞️📺💻</h2>
+
+<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="800" height="450" poster="display.png" data-setup="{}">
+  <source src="MY_VIDEO_720p.mp4" type="video/mp4" label="720p">
+  <source src="MY_VIDEO_1080p.mp4" type="video/mp4" label="1080p">
+  <source src="MY_VIDEO.webm" type="video/webm" label="WebM">
+</video>
+
+<!-- 功能列 -->
+<div>
+  <button id="play-btn" class="btn primary">⏯️ 播放</button>
+  <button id="pause-btn" class="btn primary">🟥 暫停</button>
+  <button id="prev-btn" class="btn primary">⏪ 向後 3 秒</button>
+  <button id="next-btn" class="btn primary"> 向前 3 秒 ⏩</button>
+  <button id="prev-video-btn" class="btn primary">⏮️ 上一個影片</button>
+  <button id="next-video-btn" class="btn primary">下一個影片⏭️ </button>
+ 
+</div>
+
+<!-- 自訂網址輸入 -->
+<div style="margin-top:-554px;">
+  <input id="url-input" class="url-input" placeholder="輸入 mp4 / webm 網址">
+  <button id="load-url-btn" class="btn primary">🎦載入網址</button>
+</div>
+
+<!-- Playlist UI 清單 -->
+<div class="playlist-ui" id="playlist-ui"></div>
+
+<script src="https://vjs.zencdn.net/8.23.4/video.min.js"></script>
+<script>
+  var player = videojs('my-video', {
+    controls: true,
+    autoplay: true,
+    preload: 'auto',
+    playbackRates: [0.5, 1, 1.5, 2]
+  });
+
+  var playlist = [
+    { src:"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4", name:"720p 版本" },
+    { src:"https://lingko.my.canva.site/_assets/video/6899e8e42b4faf2ca50e52139bec2ca4.mp4", name:"1080p 版本" },
+    { src:"MY_VIDEO.webm", type:"video/webm", name:"WebM 版本" }
+  ];
+  var currentIndex = 0;
+
+  // 播放
+  document.getElementById("play-btn").onclick = () => player.play();
+  // 暫停
+  document.getElementById("pause-btn").onclick = () => player.pause();
+  // 向後 3 秒
+  document.getElementById("prev-btn").onclick = () => player.currentTime(Math.max(player.currentTime()-3,0));
+  // 向前 3 秒
+  document.getElementById("next-btn").onclick = () => player.currentTime(Math.min(player.currentTime()+3,player.duration()));
+
+  // 截圖
+  document.getElementById("snapshot-btn").onclick = () => {
+    var videoEl = document.querySelector('video');
+    if (!videoEl || videoEl.videoWidth === 0) { alert("影片未載入，截唔到圖"); return; }
+    var canvas = document.createElement('canvas');
+    canvas.width = videoEl.videoWidth; canvas.height = videoEl.videoHeight;
+    canvas.getContext('2d').drawImage(videoEl, 0, 0);
+    var link = document.createElement('a');
+    link.download = 'snapshot.png'; link.href = canvas.toDataURL('image/png'); link.click();
+  };
+
+  // 上一個影片
+  document.getElementById("prev-video-btn").onclick = () => {
+    currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+    player.src(playlist[currentIndex]);
+    player.play();
+  };
+  // 下一個影片
+  document.getElementById("next-video-btn").onclick = () => {
+    currentIndex = (currentIndex + 1) % playlist.length;
+    player.src(playlist[currentIndex]);
+    player.play();
+  };
+
+  // 自訂網址輸入
+  document.getElementById("load-url-btn").onclick = () => {
+    var rawUrl = document.getElementById("url-input").value.trim();
+    if (!rawUrl) { alert("請輸入影片網址"); return; }
+    let type = "video/mp4";
+    if (rawUrl.endsWith(".webm")) type = "video/webm";
+    if (rawUrl.endsWith(".ogg")) type = "video/ogg";
+    player.src({ src: rawUrl, type: type });
+    player.load();
+    player.play().catch(err => { console.error("播放失敗：", err); alert("載入失敗，可能網址唔支援影片格式"); });
+  };
+
+  // 建立 Playlist UI
+  var playlistUI = document.getElementById("playlist-ui");
+  playlist.forEach((item, index) => {
+    var btn = document.createElement("div");
+    btn.className = "playlist-item";
+    btn.innerText = item.name;
+    btn.onclick = () => {
+      currentIndex = index;
+      player.src(item);
+      player.play();
+    };
+    playlistUI.appendChild(btn);
+  });
+</script>
+
+</body>
+</html>
+
+
+</body>
+</html>
+
+
+</body>
+</html>
